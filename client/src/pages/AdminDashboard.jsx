@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 
-import api from '../utils/api;'
+import api from '../utils/api';
 const AdminDashboard = () => {
   const [list, setList] = useState([]);
   const [error, setError] = useState("");

@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useContext } from "react";
-import axios from "axios";
+
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-
+import api from '../utils/api';
 const Login = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Login = () => {
 
     try {
       if (state === "login") {
-        const { data } = await axios.post("http://localhost:5000/api/user/login", {
+        const { data } = await api.post("/user/login", {
           rollNo: formData.rollNo.trim(),
           password: formData.password,
         });
@@ -30,7 +30,7 @@ const Login = () => {
           toast.error(data.message || "Login failed");
         }
       } else {
-        const { data } = await axios.post("http://localhost:5000/api/user/register", {
+        const { data } = await api.post("/user/register", {
           name: formData.name,
           rollNo: formData.rollNo.trim(),
           password: formData.password,

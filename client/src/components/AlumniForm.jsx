@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import axios from "axios";
+import api from '../utils/api';
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 
@@ -42,7 +42,7 @@ const AlumniForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const resp = await axios.post("http://localhost:5000/api/alumni/add", formData);
+      const resp = await api.post("alumni/add", formData);
       if (resp.data.success) {
         toast.success("Details Successfully Added");
         setFormData({

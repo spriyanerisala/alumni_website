@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
-import axios from "axios";
+
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-
+import api from '../utils/api';
 const AdminLogin = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,7 +13,7 @@ const AdminLogin = ({ onLogin }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`http://localhost:5000/api/admin/login`, {
+      const res = await api.post(`/admin/login`, {
         email,
         password,
       });

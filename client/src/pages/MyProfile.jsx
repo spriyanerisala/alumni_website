@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 import {toast, Toaster} from 'react-hot-toast'
+import api from '../utils/api';
+
 const MyProfile = () => {
   const [alumni, setAlumni] = useState(null);
   const [editable, setEditable] = useState(false);
@@ -14,8 +16,8 @@ const MyProfile = () => {
       try {
         const token = localStorage.getItem("token");
         const config = { headers: { Authorization: `Bearer ${token}` } };
-        const response = await axios.get(
-          "http://localhost:5000/api/alumni/my-profile",
+        const response = await api.get(
+          "/alumni/my-profile",
           config
         );
 
@@ -47,8 +49,8 @@ const MyProfile = () => {
       const token = localStorage.getItem("token");
       const config = { headers: { Authorization: `Bearer ${token}` } };
 
-      const response = await axios.put(
-        "http://localhost:5000/api/alumni/update-profile",
+      const response = await api.put(
+        "/alumni/update-profile",
         formData,
         config
       );
@@ -67,35 +69,6 @@ const MyProfile = () => {
     }
   };
 
-//   const handleDelete = async () => {
-//     const confirmDelete = window.confirm(
-//       "Are you sure you want to delete your profile? This action cannot be undone."
-//     );
-//     if (!confirmDelete) return;
-
-//     try {
-//       const token = localStorage.getItem("token");
-//       const config = { headers: { Authorization: `Bearer ${token}` } };
-
-//       const response = await axios.delete(
-//         "http://localhost:5000/api/alumni/delete-profile",
-//         config
-//       );
-
-//       if (response.data.success) {
-//         toast.success("Profile deleted successfully.");
-//         localStorage.removeItem("token");
-//         window.location.href = "/";
-//       } else {
-//         alert("Failed to delete profile: " + response.data.message);
-//       }
-//     } catch (err) {
-//       alert(
-//         "Error deleting profile: " +
-//           (err.response?.data?.message || err.message)
-//       );
-//     }
-//   };
 
 
 const confirmDeleteToast = (onConfirm, onCancel) => {
@@ -140,8 +113,8 @@ const handleDelete = () => {
         const token = localStorage.getItem("token");
         const config = { headers: { Authorization: `Bearer ${token}` } };
 
-        const response = await axios.delete(
-          "http://localhost:5000/api/alumni/delete-profile",
+        const response = await api.delete(
+          "/alumni/delete-profile",
           config
         );
 

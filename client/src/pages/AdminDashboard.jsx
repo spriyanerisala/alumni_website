@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
+import api from '../utils/api;'
 const AdminDashboard = () => {
   const [list, setList] = useState([]);
   const [error, setError] = useState("");
@@ -9,7 +9,7 @@ const AdminDashboard = () => {
   // Fetch alumni list
   const fetchList = async () => {
     try {
-      const resp = await axios.get("http://localhost:5000/api/admin/students");
+      const resp = await api.get("/admin/students");
       if (resp.data.success) {
         setList(resp.data.data);
       } else {

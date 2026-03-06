@@ -13,11 +13,20 @@ const app = express()
 const port =process.env.PORT
 
 await connectDB()
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://clg-alumni-website.netlify.app"
+];
+
 app.use(cors({
-  origin: process.env.CLIENT_URL,
-  credentials: true,
-  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
-  allowedHeaders: ["Content-Type","Authorization"]
+  origin: function(origin, callback){
+    if(!origin || allowedOrigins.includes(origin)){
+      callback(null, true);
+    } else {
+      callback(new Error("CORS not allowed"));
+    }
+  },
+  credentials: true
 }));
 
 app.options('*', cors()); 

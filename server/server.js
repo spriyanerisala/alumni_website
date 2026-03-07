@@ -10,26 +10,14 @@ dotenv.config()
 
 
 const app = express()
-const port =process.env.PORT
+const port =process.env.PORT 
 
 await connectDB()
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://clg-alumni-website.netlify.app"
-];
 
 app.use(cors({
-  origin: function(origin, callback){
-    if(!origin || allowedOrigins.includes(origin)){
-      callback(null, true);
-    } else {
-      callback(new Error("CORS not allowed"));
-    }
-  },
-  credentials: true
-}));
-
-app.options('*', cors()); 
+  origin:process.env.CLIENT_URL,
+  credentials:true
+}))
 app.use(express.json())
 
 app.get('/',(req,res)=>{

@@ -152,12 +152,12 @@ const handleDelete = () => {
     );
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 bg-white shadow-md rounded-lg p-6">
+    <div className="max-w-3xl mx-auto mt-6 sm:mt-10 bg-white shadow-md rounded-lg p-4 sm:p-6">
         <Toaster/>
       <h2 className="text-2xl font-bold mb-6 text-green-600 text-center">
         My Profile
       </h2>
-
+       <div  className="overflow-x-auto" >
       <table className="w-full text-sm sm:text-base text-left text-gray-800 border-collapse">
         <tbody>
           {renderRow("Name", "name", formData.name, editable, handleChange)}
@@ -211,9 +211,10 @@ const handleDelete = () => {
           )}
         </tbody>
       </table>
+      </div>
 
       {/* Buttons */}
-      <div className="mt-8 flex justify-center space-x-4">
+    <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
         {!editable ? (
           <div className="flex gap-6">
             <button
@@ -252,7 +253,7 @@ const handleDelete = () => {
 
 // Render table row (label and value or input)
 const renderRow = (label, name, value, editable, onChange, isLink = false) => (
-  <tr className="border-b border-gray-200">
+  <tr className="border-b border-gray-200 align-top">
     <td className="py-3 pr-4 font-semibold text-green-700 w-1/3">{label}:</td>
     <td className="py-3">
       {editable ? (
@@ -285,3 +286,6 @@ function capitalize(text) {
 }
 
 export default MyProfile;
+
+
+

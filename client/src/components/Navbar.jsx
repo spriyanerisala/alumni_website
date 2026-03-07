@@ -121,6 +121,14 @@ const Navbar = () => {
             About
           </NavLink>
 
+          <NavLink
+            to="/my-profile"
+            className="py-2"
+            onClick={() => setOpen(false)}
+          >
+            My Profile
+          </NavLink>
+
           {isLoggedIn && (
             <NavLink
               to="/addAlumni"

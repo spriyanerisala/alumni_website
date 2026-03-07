@@ -15,8 +15,8 @@ const port =process.env.PORT
 await connectDB()
 
 app.use(cors({
-  origin:process.env.CLIENT_URL,
-  credentials:true
+  origin: "https://clg-alumni-website.netlify.app",
+  credentials: true
 }))
 app.use(express.json())
 

@@ -15,7 +15,10 @@ const port =process.env.PORT
 await connectDB()
 
 app.use(cors({
-  origin: "https://alumni-website-clg.vercel.app",
+  origin: [
+    "https://alumni-website-clg.vercel.app",
+          "http://localhost:5173"
+  ],
   credentials: true
 }))
 app.use(express.json())
@@ -27,6 +30,9 @@ app.get('/',(req,res)=>{
 app.use('/api/user',userRouter)
 app.use('/api/alumni',router)
 app.use('/api/admin',adminRouter)
+
+
+
 
 app.listen(port,()=>{
     console.log(`server is running on port : ${port}`)
